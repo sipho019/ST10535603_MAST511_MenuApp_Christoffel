@@ -95,8 +95,8 @@ export default function App() {
   if (screen === 'home') {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Christoffel's Menu App</Text>
-        <Text style={styles.subtitle}>MAST511 - Personal Chef</Text>
+        <Text style={styles.title}>Christoffel's Menu</Text>
+        <Text style={styles.subtitle}>Neo - Personal Chef</Text>
         <AppButton title="View Menu" onPress={() => setScreen('view')} />
         <AppButton title="Chef Menu - Add Dish" onPress={openAddForm} />
         <AppButton title="Menu Statistics" onPress={() => setScreen('stats')} />
