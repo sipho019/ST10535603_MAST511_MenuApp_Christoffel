@@ -16,31 +16,59 @@ export default function App() {
   const [course, setCourse] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
+  const [editingId, setEditingId] = useState(null);
 
-    const addDish = () => {
+      const saveDish = () => {
     const errorMessage = validateDish({ name, course, price, description });
     if (errorMessage) {
       Alert.alert('Error', errorMessage);
       return;
     }
-    const newDish = {
-      id: Date.now().toString(),
+    const dishData = {
       name: name.trim(),
       course,
       price: Number(price),
       description: description.trim(),
     };
-    setDishes([...dishes, newDish]);
-    setName(''); setCourse(''); setPrice(''); setDescription('');
-    Alert.alert('Success', 'Dish added successfully!');
+    if (editingId) {
+      setDishes(dishes.map(dish => (dish.id === editingId ? { ...dish, ...dishData } : dish)));
+      Alert.alert('Success', 'Dish updated successfully!');
+    } else {
+      setDishes([...dishes, { id: Date.now().toString(), ...dishData }]);
+      Alert.alert('Success', 'Dish added successfully!');
+    }
+    clearForm();
     setScreen('view');
+  };
+    const confirmDelete = (dish) => {
+
+    Alert.alert('Delete dish', `Delete "${dish.name}"?`, [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: () => setDishes(dishes.filter(item => item.id !== dish.id)),
+      },
+    ]);
+  };
+      const startEditing = (dish) => {
+    setName(dish.name);
+    setCourse(dish.course);
+    setPrice(String(dish.price));
+    setDescription(dish.description);
+    setEditingId(dish.id);
+    setScreen('chef');
+  };
+    const clearForm = () => {
+    setName(''); setCourse(''); setPrice(''); setDescription('');
+    setEditingId(null);
   };
 
   if (screen === 'home') {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Christoffel's Menu App</Text>
-        <Text style={styles.subtitle}>MAST511 - Personal Chef</Text>
+        <Text style={styles.title}>Christoffel's Menu</Text>
+        <Text style={styles.subtitle}>Personal Chef</Text>
            <AppButton title="View Menu" onPress={() => setScreen('view')} />
             <AppButton title="Chef Menu - Add Dish" onPress={() => setScreen('chef')} />
         <Text style={styles.footer}>Total Dishes: {dishes.length}</Text>
@@ -55,7 +83,7 @@ export default function App() {
         <FlatList
           data={dishes}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <DishCard dish={item} />}
+         renderItem={({ item }) => <DishCard dish={item} onEdit={startEditing} onDelete={confirmDelete} />}
         />
         <AppButton title="Back to Home" variant="dark" onPress={() => setScreen('home')} />
       </View>
@@ -64,7 +92,7 @@ export default function App() {
 
     return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Chef Menu</Text>
+        <Text style={styles.title}>{editingId ? 'Edit Dish' : 'Chef Menu'}</Text>
       <TextInput style={styles.input} placeholder="Dish Name" value={name} onChangeText={setName} />
 
       <Text style={styles.label}>Course</Text>
@@ -84,8 +112,8 @@ export default function App() {
 
       <TextInput style={styles.input} placeholder="Price" value={price} onChangeText={setPrice} keyboardType="numeric" />
       <TextInput style={[styles.input, { height: 80 }]} placeholder="Description" value={description} onChangeText={setDescription} multiline />
-      <AppButton title="Save Dish" onPress={addDish} />
-      <AppButton title="Back" variant="dark" onPress={() => setScreen('home')} />
+      <AppButton title={editingId ? 'Update Dish' : 'Save Dish'} onPress={saveDish} />
+      <AppButton title="Back" variant="dark" onPress={() => { clearForm(); setScreen('home'); }} />
     </ScrollView>
   );
 }

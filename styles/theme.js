@@ -6,6 +6,7 @@ export const COLORS = {
   border: '#cccccc',
   textOnDark: '#ffffff',
   textMuted: 'gray',
+  danger: '#c62828',
 };
 
 export const SPACING = {
