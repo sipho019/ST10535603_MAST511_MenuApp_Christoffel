@@ -9,7 +9,7 @@ export default function DishCard({ dish, onEdit, onDelete }) {
       <Text style={styles.name}>{dish.name} - R{dish.price.toFixed(2)}</Text>
       <Text style={styles.course}>{dish.course}</Text>
       <Text>{dish.description}</Text>
-            <View style={styles.actions}>
+      <View style={styles.actions}>
         <View style={styles.actionButton}>
           <AppButton title="Edit" onPress={() => onEdit(dish)} />
         </View>
@@ -30,4 +30,6 @@ const styles = StyleSheet.create({
   },
   name: { fontWeight: 'bold', fontSize: 16 },
   course: { color: COLORS.primary, marginBottom: 5 },
+  actions: { flexDirection: 'row', marginTop: SPACING.small },
+  actionButton: { flex: 1, marginHorizontal: 4 },
 });

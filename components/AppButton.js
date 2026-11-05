@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { COLORS, SPACING } from '../styles/theme';
 
-
 const BUTTON_COLORS = { primary: COLORS.primary, dark: COLORS.dark, danger: COLORS.danger };
 
 export default function AppButton({ title, onPress, variant = 'primary' }) {
