@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, Alert, ScrollView } from 'react-native';
+   import { COURSES } from './constants/courses';
+   import { validateDish } from './utils/validation';
 
 export default function App() {
   const [screen, setScreen] = useState('home');

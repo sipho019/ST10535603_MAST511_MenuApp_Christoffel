@@ -1,0 +1,1 @@
+export const COURSES = ['Starter', 'Main Course', 'Dessert'];
