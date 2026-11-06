@@ -61,5 +61,19 @@ styles/
 - React Native
 - Expo (see `package.json` for the exact SDK version)
 
+## Code Improvements Since Part 2
+- The menu list is displayed with a FlatList [1], and styles are defined with StyleSheet [2].
+- Delete confirmations use the Alert API [3].
+- Search and filtering use the JavaScript array method `filter` [4], and the statistics use `reduce` [5].
+- The app is built and run with Expo [6]
+
+
+
 ## GitHub
-https://github.com/sipho019/ST10535603_MAST511_MenuApp_Christoffel
+https://github.com/sipho019/ST10535603_MAST511_MenuApp_Christoffel## References
+[1] Meta Platforms, Inc., "FlatList," React Native Documentation. Accessed: Nov. 6, 2026. [Online]. Available: https://reactnative.dev/docs/flatlist
+[2] Meta Platforms, Inc., "StyleSheet," React Native Documentation. Accessed: Nov. 6, 2026. [Online]. Available: https://reactnative.dev/docs/stylesheet
+[3] Meta Platforms, Inc., "Alert," React Native Documentation. Accessed: Nov. 6, 2026. [Online]. Available: https://reactnative.dev/docs/alert
+[4] Mozilla Contributors, "Array.prototype.filter()," MDN Web Docs. Accessed: Nov. 6, 2026. [Online]. Available: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+[5] Mozilla Contributors, "Array.prototype.reduce()," MDN Web Docs. Accessed: Nov. 6, 2026. [Online]. Available: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+[6] Expo, "Expo Documentation." Accessed: Nov. 6, 2026. [Online]. Available: https://docs.expo.dev/
